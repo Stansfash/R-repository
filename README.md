@@ -16,10 +16,10 @@ The dataset used for this analysis is the "UCI HAR Dataset," which contains data
 2. **Extract Mean and Standard Deviation**: Filtered the dataset to include only measurements related to the mean and standard deviation.
 3. **Add Descriptive Activity Names**: Merged activity labels with the main dataset to provide descriptive names for activities.
 4. **Label Variables**: Renamed variables for clarity and consistency.
-5. **Create Tidy Dataset**: Calculated the average of each variable for each activity and subject and saved the result to a CSV file.
+5. **Create Tidy Dataset**: Calculated the average of each variable for each activity and subject and saved the result to a txt file.
 
 ## Running the Analysis
-To run the analysis, execute the `run_analysis.R` script in R. This script will perform all data processing steps and generate the `tidy_average_data.csv` file.
+To run the analysis, execute the `run_analysis.R` script in R. This script will perform all data processing steps and generate the `tidy_average_data.txt` file.
 
 ## Dependencies
 - R (version 4.0 or higher)
