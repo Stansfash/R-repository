@@ -1,0 +1,223 @@
+---
+title: "CodeBook"
+author: "Blessing Azubuike"
+date: "2024-09-23"
+output: pdf_document
+---
+
+# CodeBook for UCI HAR Dataset Analysis
+
+## Project Overview
+This project analyzes the UCI Human Activity Recognition (HAR) dataset, which contains measurements collected from smartphones to recognize various physical activities performed by subjects.
+
+## Variables Description
+
+### Data Structure
+The final dataset contains the following variables:
+
+| Variable Name                                           | Description                                           | Units            |
+|---------------------------------------------------------|-------------------------------------------------------|------------------|
+| `subject`                                               | Unique identifier for each subject                    | N/A              |
+| `activity_code`                                        | Numerical code representing the activity              | N/A              |
+| `activity_name`                                        | Descriptive name of the activity                      | N/A              |
+| `TimeBodyAcc-Mean-X`                                  | Mean body acceleration along the X-axis               | g (gravity)      |
+| `TimeBodyAcc-Mean-Y`                                  | Mean body acceleration along the Y-axis               | g (gravity)      |
+| `TimeBodyAcc-Mean-Z`                                  | Mean body acceleration along the Z-axis               | g (gravity)      |
+| `TimeBodyAcc-StandardDeviation-X`                     | Standard deviation of body acceleration along the X-axis | g (gravity)   |
+| `TimeBodyAcc-StandardDeviation-Y`                     | Standard deviation of body acceleration along the Y-axis | g (gravity)   |
+| `TimeBodyAcc-StandardDeviation-Z`                     | Standard deviation of body acceleration along the Z-axis | g (gravity)   |
+| `TimeGravityAcc-Mean-X`                               | Mean gravity acceleration along the X-axis            | g (gravity)      |
+| `TimeGravityAcc-Mean-Y`                               | Mean gravity acceleration along the Y-axis            | g (gravity)      |
+| `TimeGravityAcc-Mean-Z`                               | Mean gravity acceleration along the Z-axis            | g (gravity)      |
+| `TimeGravityAcc-StandardDeviation-X`                  | Standard deviation of gravity acceleration along the X-axis | g (gravity)   |
+| `TimeGravityAcc-StandardDeviation-Y`                  | Standard deviation of gravity acceleration along the Y-axis | g (gravity)   |
+| `TimeGravityAcc-StandardDeviation-Z`                  | Standard deviation of gravity acceleration along the Z-axis | g (gravity)   |
+| `TimeBodyAccJerk-Mean-X`                              | Mean of body acceleration jerk along the X-axis       | g (gravity)      |
+| `TimeBodyAccJerk-Mean-Y`                              | Mean of body acceleration jerk along the Y-axis       | g (gravity)      |
+| `TimeBodyAccJerk-Mean-Z`                              | Mean of body acceleration jerk along the Z-axis       | g (gravity)      |
+| `TimeBodyAccJerk-StandardDeviation-X`                 | Standard deviation of body acceleration jerk along the X-axis | g (gravity)   |
+| `TimeBodyAccJerk-StandardDeviation-Y`                 | Standard deviation of body acceleration jerk along the Y-axis | g (gravity)   |
+| `TimeBodyAccJerk-StandardDeviation-Z`                 | Standard deviation of body acceleration jerk along the Z-axis | g (gravity)   |
+| `TimeBodyGyro-Mean-X`                                 | Mean body gyroscope measurement along the X-axis      | rad/s            |
+| `TimeBodyGyro-Mean-Y`                                 | Mean body gyroscope measurement along the Y-axis      | rad/s            |
+| `TimeBodyGyro-Mean-Z`                                 | Mean body gyroscope measurement along the Z-axis      | rad/s            |
+| `TimeBodyGyro-StandardDeviation-X`                    | Standard deviation of body gyroscope measurement along the X-axis | rad/s         |
+| `TimeBodyGyro-StandardDeviation-Y`                    | Standard deviation of body gyroscope measurement along the Y-axis | rad/s         |
+| `TimeBodyGyro-StandardDeviation-Z`                    | Standard deviation of body gyroscope measurement along the Z-axis | rad/s         |
+| `TimeBodyGyroJerk-Mean-X`                             | Mean of gyroscope jerk measurement along the X-axis    | rad/s            |
+| `TimeBodyGyroJerk-Mean-Y`                             | Mean of gyroscope jerk measurement along the Y-axis    | rad/s            |
+| `TimeBodyGyroJerk-Mean-Z`                             | Mean of gyroscope jerk measurement along the Z-axis    | rad/s            |
+| `TimeBodyGyroJerk-StandardDeviation-X`                | Standard deviation of gyroscope jerk measurement along the X-axis | rad/s         |
+| `TimeBodyGyroJerk-StandardDeviation-Y`                | Standard deviation of gyroscope jerk measurement along the Y-axis | rad/s         |
+| `TimeBodyGyroJerk-StandardDeviation-Z`                | Standard deviation of gyroscope jerk measurement along the Z-axis | rad/s         |
+| `TimeBodyAccMag-Mean`                                 | Mean magnitude of body acceleration                    | g (gravity)      |
+| `TimeBodyAccMag-StandardDeviation`                     | Standard deviation of magnitude of body acceleration   | g (gravity)      |
+| `TimeGravityAccMag-Mean`                              | Mean magnitude of gravity acceleration                 | g (gravity)      |
+| `TimeGravityAccMag-StandardDeviation`                  | Standard deviation of magnitude of gravity acceleration | g (gravity)     |
+| `TimeBodyAccJerkMag-Mean`                             | Mean magnitude of body acceleration jerk               | g (gravity)      |
+| `TimeBodyAccJerkMag-StandardDeviation`                 | Standard deviation of magnitude of body acceleration jerk | g (gravity)   |
+| `TimeBodyGyroMag-Mean`                                | Mean magnitude of body gyroscope measurement           | rad/s            |
+| `TimeBodyGyroMag-StandardDeviation`                    | Standard deviation of magnitude of body gyroscope measurement | rad/s        |
+| `TimeBodyGyroJerkMag-Mean`                            | Mean magnitude of gyroscope jerk measurement           | rad/s            |
+| `TimeBodyGyroJerkMag-StandardDeviation`                | Standard deviation of magnitude of gyroscope jerk measurement | rad/s        |
+| `FrequencyBodyAcc-Mean-X`                              | Mean body acceleration in frequency domain along the X-axis | g (gravity)   |
+| `FrequencyBodyAcc-Mean-Y`                              | Mean body acceleration in frequency domain along the Y-axis | g (gravity)   |
+| `FrequencyBodyAcc-Mean-Z`                              | Mean body acceleration in frequency domain along the Z-axis | g (gravity)   |
+| `FrequencyBodyAcc-StandardDeviation-X`                 | Standard deviation of body acceleration in frequency domain along the X-axis | g (gravity) |
+| `FrequencyBodyAcc-StandardDeviation-Y`                 | Standard deviation of body acceleration in frequency domain along the Y-axis | g (gravity) |
+| `FrequencyBodyAcc-StandardDeviation-Z`                 | Standard deviation of body acceleration in frequency domain along the Z-axis | g (gravity) |
+| `FrequencyBodyAccJerk-Mean-X`                          | Mean of body acceleration jerk in frequency domain along the X-axis | g (gravity) |
+| `FrequencyBodyAccJerk-Mean-Y`                          | Mean of body acceleration jerk in frequency domain along the Y-axis | g (gravity) |
+| `FrequencyBodyAccJerk-Mean-Z`                          | Mean of body acceleration jerk in frequency domain along the Z-axis | g (gravity) |
+| `FrequencyBodyAccJerk-StandardDeviation-X`             | Standard deviation of body acceleration jerk in frequency domain along the X-axis | g (gravity) |
+| `FrequencyBodyAccJerk-StandardDeviation-Y`             | Standard deviation of body acceleration jerk in frequency domain along the Y-axis | g (gravity) |
+| `FrequencyBodyAccJerk-StandardDeviation-Z`             | Standard deviation of body acceleration jerk in frequency domain along the Z-axis | g (gravity) |
+| `FrequencyBodyGyro-Mean-X`                             | Mean of body gyroscope measurement in frequency domain along the X-axis | rad/s         |
+| `FrequencyBodyGyro-Mean-Y`                             | Mean of body gyroscope measurement in frequency domain along the Y-axis | rad/s         |
+| `FrequencyBodyGyro-Mean-Z`                             | Mean of body gyroscope measurement in frequency domain along the Z-axis | rad/s         |
+| `FrequencyBodyGyro-StandardDeviation-X`                | Standard deviation of body gyroscope measurement in frequency domain along the X-axis | rad/s         |
+| `FrequencyBodyGyro-StandardDeviation-Y`                | Standard deviation of body gyroscope measurement in frequency domain along the Y-axis | rad/s         |
+| `FrequencyBodyGyro-StandardDeviation-Z`                | Standard deviation of body gyroscope measurement in frequency domain along the Z-axis | rad/s         |
+| `FrequencyBodyAccMag-Mean`                             | Mean magnitude of body acceleration in frequency domain | g (gravity)     |
+| `FrequencyBodyAccMag-StandardDeviation`                 | Standard deviation of magnitude of body acceleration in frequency domain | g (gravity)   |
+| `FrequencyBodyAccJerkMagnitude-Mean`                   | Mean magnitude of body acceleration jerk in frequency domain | g (gravity)   |
+| `FrequencyBodyAccJerkMagnitude-StandardDeviation`       | Standard deviation of magnitude of body acceleration jerk in frequency domain | g (gravity)   |
+| `FrequencyBodyGyroMagnitude-Mean`                      | Mean magnitude of body gyroscope measurement in frequency domain | rad/s         |
+| `FrequencyBodyGyroMagnitude-StandardDeviation`          | Standard deviation of magnitude of body gyroscope measurement in frequency domain | rad/s         |
+| `FrequencyBodyGyroJerkMagnitude-Mean`                   | Mean magnitude of gyroscope jerk measurement in frequency domain | rad/s         |
+| `FrequencyBodyGyroJerkMagnitude-StandardDeviation`       | Standard deviation of magnitude of gyroscope jerk measurement in frequency domain | rad/s         |
+
+## Data Cleaning and Transformations
+
+1. **Loading Data**:
+   - Read training and test datasets along with corresponding inertial signals data files.
+   - Dynamically assigned data from each text file to R variables based on filenames.
+   
+   
+```{r}
+X_train_path <- "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\train\\X_train.txt"
+y_train_path <- "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\train\\y_train.txt"
+X_test_path <- "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\test\\X_test.txt"
+y_test_path <- "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\test\\y_test.txt"
+activity_labels_path <- "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\activity_labels.txt"
+features_path <-  "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\features.txt"
+subject_train_path <-  "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\train\\subject_train.txt"
+subject_test_path <-  "C:\\Users\\bnnen\\Downloads\\getdata_projectfiles_UCI HAR Dataset\\UCI HAR Dataset\\test\\subject_test.txt"
+
+
+X_train <- read.table(X_train_path, header = FALSE)
+y_train <- read.table(y_train_path, header = FALSE, col.names = "activity_code")
+X_test <- read.table(X_test_path, header = FALSE)
+y_test <- read.table(y_test_path, header = FALSE, col.names = "activity_code")
+features <- read.table(features_path, header = FALSE, col.names = c("index", "feature_name"))
+activity_labels <- read.table(activity_labels_path, header = FALSE, col.names = c("activity_code", "activity_name"))
+subject_train <- read.table(subject_train_path, header = FALSE, col.names = "subject")
+subject_test <- read.table(subject_test_path, header = FALSE, col.names = "subject")
+
+
+# Function to read data from text files
+read_inertial_signals <- function(folder_path) {
+  file_list <- list.files(path = folder_path, pattern = "\\.txt$", full.names = TRUE)
+  for (file in file_list) {
+    file_name <- tools::file_path_sans_ext(basename(file))
+    data <- read.table(file, header = FALSE)
+    assign(file_name, data, envir = .GlobalEnv)
+  }
+}
+
+# Read training and test datasets
+read_inertial_signals(train_path)
+read_inertial_signals(test_path)
+```
+   
+
+2. **Merging Datasets**:
+   - Combined feature data (`X_train`, `X_test`), activity labels (`y_train`, `y_test`), and subject IDs (`subject_train`, `subject_test`) into one comprehensive dataset.
+   
+   
+   
+```{r}
+# 2. Merge Training and Test Sets
+# Combine feature measurements, activity labels, and subject IDs
+combined_X <- rbind(X_train, X_test)             
+combined_y <- rbind(y_train, y_test)             
+combined_subject <- rbind(subject_train, subject_test)
+
+# Set column names for the feature data
+colnames(combined_X) <- features$feature_name
+
+# Merge the datasets into one
+combined_data <- cbind(combined_subject, combined_y, combined_X)
+```
+   
+
+3. **Extracting Relevant Features**:
+   - Selected only the measurements related to mean and standard deviation by filtering columns containing the keywords "mean()" or "std()".
+   - Used the `grep` function to identify and extract these features from the combined dataset.
+   
+```{r}
+# 3. Extract Measurements on Mean and Standard Deviation
+mean_std_features <- grep("mean\\(\\)|std\\(\\)", features$feature_name, value = TRUE)
+selected_data <- combined_data[, c("subject", "activity_code", mean_std_features)]
+```
+   
+
+4. **Adding Descriptive Activity Names**:
+   - Merged the activity labels with the selected data to replace activity codes with descriptive names.
+   
+```{r}
+# 4. Add Descriptive Activity Names
+final_data <- merge(selected_data, activity_labels, by = "activity_code", all.x = TRUE)
+final_data <- final_data[, c("subject", "activity_code", "activity_name", mean_std_features)]
+```
+   
+
+5. **Renaming Variables**:
+   - Renamed variables to be more descriptive and user-friendly using the `str_replace_all` function, ensuring clarity (e.g., replacing "mean()" with "Mean" and "std()" with "StandardDeviation").
+   
+```{r}
+# 5. Appropriately Label the Dataset
+names(final_data) <- str_replace_all(names(final_data), 
+                                     c("mean\\(\\)" = "Mean",
+                                       "std\\(\\)" = "StandardDeviation",
+                                       "-mean" = "Mean",
+                                       "-std" = "StandardDeviation",
+                                       "tBodyAcc" = "TimeBodyAcc",
+                                       "tGravityAcc" = "TimeGravityAcc",
+                                       "tBodyAccJerk" = "TimeBodyAccJerk",
+                                       "tBodyGyro" = "TimeBodyGyro",
+                                       "tBodyGyroJerk" = "TimeBodyGyroJerk",
+                                       "tBodyAccMag" = "TimeBodyAccMagnitude",
+                                       "tGravityAccMag" = "TimeGravityAccMagnitude",
+                                       "tBodyAccJerkMag" = "TimeBodyAccJerkMagnitude",
+                                       "tBodyGyroMag" = "TimeBodyGyroMagnitude",
+                                       "tBodyGyroJerkMag" = "TimeBodyGyroJerkMagnitude",
+                                       "fBodyAcc" = "FrequencyBodyAcc",
+                                       "fBodyAccJerk" = "FrequencyBodyAccJerk",
+                                       "fBodyGyro" = "FrequencyBodyGyro",
+                                       "fBodyBodyAccJerkMag" = "FrequencyBodyAccJerkMagnitude",
+                                       "fBodyAccMag" = "FrequencyBodyAccMagnitude",
+                                       "fBodyGyroMag" = "FrequencyBodyGyroMagnitude",
+                                       "fBodyBodyGyroMag" = "FrequencyBodyGyroMagnitude",
+                                       "fBodyBodyGyroJerkMag" = "FrequencyBodyGyroJerkMagnitude"
+                                     ))
+```
+   
+
+6. **Creating a Tidy Dataset**:
+   - Grouped the data by `subject`, `activity_code`, and `activity_name`, then calculated the average of each measurement for each subject and activity using the `summarise` function.
+   
+```{r}
+# 6. Create Tidy Dataset with Averages
+tidy_average_data <- final_data %>%
+  group_by(subject, activity_code, activity_name) %>%
+  summarise(across(starts_with("t") | starts_with("f"), mean, na.rm = TRUE)) %>%
+  ungroup()
+```
+   
+
+7. **Final Dataset**:
+   - The final tidy dataset (`tidy_average_data`) contains the average of each variable for each activity and subject.
+
+## Conclusion
+The cleaned and transformed dataset provides a comprehensive view of the physical activities performed by subjects, enabling further analysis and insights into human activity recognition. This codebook serves as a guide to understanding the dataset's structure and the transformations applied during the project.
