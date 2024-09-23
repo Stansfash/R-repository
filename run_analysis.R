@@ -100,6 +100,16 @@ tidy_average_data <- final_data %>%
 write.csv(tidy_average_data, "tidy_average_data.csv", row.names = FALSE)
 
 
+# 6. Create Tidy Dataset with Averages
+tidy_average_data <- final_data %>%
+  group_by(subject, activity_code, activity_name) %>%
+  summarise(across(starts_with("t") | starts_with("f"), mean, na.rm = TRUE)) %>%
+  ungroup()
+
+# Save tidy_average_data to a textfile
+write.table(tidy_average_data, "tidy_average_data.txt", row.names = FALSE)
+
+
 
 
 
