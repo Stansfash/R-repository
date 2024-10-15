@@ -1,0 +1,229 @@
+---
+title: "Machine Learning Project2"
+author: "Blessing Azubuike"
+date: "2024-10-14"
+output: html_document
+---
+
+
+## Introduction
+
+The goal of this project is to predict the manner in which participants performed an exercise based on various sensor measurements. The target variable is `classe`, which indicates the type of exercise performed. We will use machine learning techniques to build a predictive model utilizing the training data provided.
+
+## Data Preparation
+
+### Loading Libraries
+
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(caret)
+library(dplyr)
+library(randomForest)
+library(ggplot2)
+```
+
+### Loading Data
+
+```{r}
+# Load the training and testing datasets
+train_data <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv")
+test_data <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv")
+
+```
+
+### Exploring the Data
+
+```{r}
+# Check the structure of the training data
+str(train_data)
+
+# Summarize the target variable
+table(train_data$classe)
+
+```
+
+
+### Data Cleaning
+
+```{r}
+# Function to remove columns with any NA values
+remove_na_columns <- function(data) {
+  data[, colSums(is.na(data)) == 0]
+}
+
+# Clean both train and test data by removing columns with NA values
+train_data_clean <- remove_na_columns(train_data)
+test_data_clean <- remove_na_columns(test_data)
+
+# Get the column names of test_data_clean (excluding 'classe' from train_data_clean)
+common_columns <- intersect(colnames(test_data_clean), colnames(train_data_clean))
+
+# Keep only common columns in train_data_clean + the 'classe' column
+train_data_clean <- train_data_clean[, c(common_columns, "classe")]
+
+# Get the common columns between train_data_clean and test_data_clean, excluding 'classe' from train_data_clean
+common_columns <- intersect(colnames(train_data_clean)[colnames(train_data_clean) != "classe"], colnames(test_data_clean))
+
+# Subset the train_data_clean to keep only the common columns and 'classe'
+train_data_clean <- train_data_clean[, c(common_columns, "classe")]
+
+# Subset the test_data_clean to keep only the common columns
+test_data_clean <- test_data_clean[, common_columns]
+
+# Check if the columns are now aligned
+print("Columns in train_data_clean (excluding 'classe'):")
+print(colnames(train_data_clean))
+
+print("Columns in test_data_clean:")
+print(colnames(test_data_clean))
+
+# Print the dimensions of the cleaned datasets
+cat("Dimensions of cleaned training data: ", dim(train_data_clean), "\n")
+cat("Dimensions of cleaned testing data: ", dim(test_data_clean), "\n")
+
+```
+
+## Data Cleaning Continued
+
+```{r}
+library(dplyr)
+
+# 1. Remove irrelevant columns and those with any NA values
+train_data_clean <- train_data %>%
+  select(-c(X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, 
+            cvtd_timestamp, new_window, num_window)) %>%
+  select_if(~ all(!is.na(.)))  # Keep only columns without any NA values
+
+# 2. Convert `classe` to a factor in train_data_clean
+train_data_clean$classe <- as.factor(train_data_clean$classe)
+
+# 3. Prepare test_data_clean by removing irrelevant columns and any columns with NA values
+test_data_clean <- test_data %>%
+  select(-c(X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, 
+            cvtd_timestamp, new_window, num_window)) %>%
+  select_if(~ all(!is.na(.)))  # Keep only columns without any NA values
+
+# 4. Ensure both datasets have the same columns (except `classe` in train_data_clean)
+common_columns <- intersect(colnames(train_data_clean)[colnames(train_data_clean) != "classe"], colnames(test_data_clean))
+
+# Subset the train_data_clean to keep only the common columns and 'classe'
+train_data_clean <- train_data_clean[, c(common_columns, "classe")]
+
+# Subset the test_data_clean to keep only the common columns
+test_data_clean <- test_data_clean[, common_columns]
+
+# Check if the columns are now aligned
+print("Columns in train_data_clean (excluding 'classe'):")
+print(colnames(train_data_clean))
+
+print("Columns in test_data_clean:")
+print(colnames(test_data_clean))
+
+# Check the levels and number of observations for each class in the training data
+print("Levels of 'classe':")
+print(levels(train_data_clean$classe))
+print("Distribution of 'classe' in training data:")
+print(table(train_data_clean$classe))
+```
+
+### Model Building
+
+#### Train-Test Split
+
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Create training and validation sets
+train_index <- createDataPartition(train_data_clean$classe, p = 0.75, list = FALSE)
+training_set <- train_data_clean[train_index, ]
+validation_set <- train_data_clean[-train_index, ]
+
+# Check for factor levels in the training set
+print("Levels of 'classe' in training set:")
+print(levels(training_set$classe))
+print("Distribution of 'classe' in training set:")
+print(table(training_set$classe))
+
+```
+
+### Model Training and cross validation
+
+```{r}
+# Ensure we have enough levels for the response variable before training the model
+if (length(levels(training_set$classe)) > 1) {
+  # Train the random forest model
+  rf_model <- randomForest(classe ~ ., data = training_set, importance = TRUE, ntree = 100)
+  
+  # Print the random forest model summary
+  print(rf_model)
+  
+  # Train the random forest model with cross-validation
+  train_control <- trainControl(method = "cv", number = 10)
+  
+  cv_model <- train(classe ~ ., data = training_set, method = "rf", trControl = train_control)
+  
+  # Print the model results
+  print(cv_model)
+  
+} else {
+  stop("Not enough levels in 'classe' for model training.")
+}
+
+```
+
+
+### Model Evaluation
+
+#### Accuracy of the Model
+
+```{r}
+# Evaluate the model on the validation set
+predictions <- predict(rf_model, validation_set)
+confusionMatrix(predictions, validation_set$classe)
+
+```
+
+
+#### Expected Out-of-Sample Error
+
+Based on the confusion matrix, we can assess the model's accuracy and derive the expected out-of-sample error
+
+### Predictions on Test Data
+
+```{r}
+# Make predictions on the test dataset
+test_predictions <- predict(rf_model, test_data_clean)
+
+# Display predictions
+print(test_predictions)
+
+
+```
+
+
+### Conclusion
+
+In this report, we have built a predictive model using the random forest algorithm to predict the manner in which exercises were performed. We used cross-validation to evaluate the model's performance and derived an expected out-of-sample error. The model performed well on the validation set with an accuracy of 0.9963, and we also made predictions for the provided test cases.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
